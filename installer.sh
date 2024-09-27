@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkfs.ext4 /dev/sda2
 
 mkswap /dev/sda1
