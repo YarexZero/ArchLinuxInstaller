@@ -1,15 +1,4 @@
 #!/bin/bash
-
-locale-gen
-
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-
-echo "EndlessRPG-Server" > /etc/hostname
-
-genfstab -U /mnt >> /mnt/etc/fstab
-
-arch-chroot /mnt
-
 ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 
 hwclock --systohc
