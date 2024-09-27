@@ -9,7 +9,7 @@ echo "EndlessRPG-Server" > /etc/hostname
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-arch-chroot /mnt /bin/bash <<EOF
+arch-chroot /mnt << EOF
 ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 hwclock --systohc
 locale-gen
