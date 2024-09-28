@@ -1,21 +1,10 @@
 #!/bin/bash
-pacstrap -K /mnt dhcpcd
+mkfs.ext4 /dev/sda2
 
-locale-gen
+mkswap /dev/sda1
 
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
+mount /dev/sda2 /mnt
 
-echo "EndlessRPG-Server" > /etc/hostname
+swapon /dev/sda1
 
-genfstab -U /mnt >> /mnt/etc/fstab
-
-arch-chroot /mnt << EOF
-ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
-hwclock --systohc
-locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-echo "EndlessRPG-Server" > /etc/hostname
-grub-install --target=i386-pc /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
-passwd
-EOF
+pacstrap -K /mnt base linux linux-firmware php php-apache sudo vim mediawiki zerotier-one grub wpa_supplicant
